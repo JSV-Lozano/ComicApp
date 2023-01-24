@@ -2,12 +2,11 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import styles from "@/styles/Home.module.css";
+import styles from "@styles/Home.module.css";
 import fs from "fs/promises";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ comicsFile }) {
-  console.log("🚀 ~ file: index.js:11 ~ Home ~ comicsFile", comicsFile);
   return (
     <>
       <Head>
@@ -18,8 +17,19 @@ export default function Home({ comicsFile }) {
       </Head>
       <main className={styles.main}>
         {comicsFile.map((comics) => (
-          <Link href={`/comic/${comics.id}`} key={comics.id}>
-            <img src={comics.img} alt={comics.alt} />
+          <Link
+            className={styles.container__Comic}
+            href={`/comic/${comics.id}`}
+            key={comics.id}
+          >
+            <h3 className={styles.title__Comic}>{comics.title}</h3>
+            <Image
+              width={comics.width}
+              height={comics.height}
+              object-fit="contain"
+              src={comics.img}
+              alt={comics.alt}
+            />
           </Link>
         ))}
       </main>

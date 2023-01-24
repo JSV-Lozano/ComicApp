@@ -5,8 +5,9 @@ import { NextUIProvider } from "@nextui-org/react";
 export default function App({ Component, pageProps }) {
   return (
     <NextUIProvider>
-      <Header />
-      <Component {...pageProps} />
+      <Header>
+        <Component {...pageProps} />
+      </Header>
     </NextUIProvider>
   );
 }
