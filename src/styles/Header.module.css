@@ -1,0 +1,44 @@
+.Header {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  background-color: #fff;
+}
+.ContainerHeader {
+  width: 80vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ContainerLogo {
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  color: #000;
+  margin: 0;
+}
+.ContainerLogo > h2:nth-child(2) {
+  color: rgb(0, 0, 0);
+  font-weight: 400;
+}
+.Nav {
+  width: 400px;
+}
+.Nav > ul {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.Nav ul > li > a {
+  font-size: 1.8em;
+  color: rgb(0, 0, 0);
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+.Nav ul > li > a:hover {
+  color: rgb(116, 116, 116);
+}
