@@ -1,9 +1,8 @@
-import { Text, Container } from "@nextui-org/react";
 import Link from "next/link";
 import React, { Children } from "react";
 import styles from "@styles/Header.module.css";
 
-function Header({children}) {
+function Header({ children }) {
   return (
     <>
       <header className={styles.Header}>

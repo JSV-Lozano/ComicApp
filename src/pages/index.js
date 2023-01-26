@@ -30,6 +30,7 @@ export default function Home({ comicsFile }) {
               src={comics.img}
               alt={comics.alt}
             />
+            <p>{comics.id}</p>
           </Link>
         ))}
       </main>
