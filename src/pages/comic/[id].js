@@ -1,10 +1,11 @@
 import { readFile, stat, readdir } from "fs/promises";
+import { basename } from "path";
 import { useRouter } from "next/router";
+import { Layaout } from "@components/Layaout";
 import Link from "next/link";
 import Image from "next/image";
-import styles from "@styles/ComicId.module.css";
-import { basename } from "path";
 import Head from "next/head";
+import styles from "@styles/ComicId.module.css";
 
 export default function ComicId({
   title,
@@ -30,7 +31,7 @@ export default function ComicId({
       {!title ? (
         <p className={styles.loading}>Loading...</p>
       ) : (
-        <main className={styles.main}>
+        <div className={styles.main}>
           <p>ID= {id}</p>
           <section className={styles.comic__Info}>
             <h2>{title}</h2>
@@ -41,7 +42,7 @@ export default function ComicId({
               {hasNext && <Link href={`${nextId}`}>Next</Link>}
             </div>
           </section>
-        </main>
+        </div>
       )}
     </>
   );

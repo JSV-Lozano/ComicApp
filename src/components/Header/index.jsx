@@ -1,8 +1,26 @@
 import Link from "next/link";
+import { useState, useRef } from "react";
 import React, { Children } from "react";
 import styles from "@styles/Header.module.css";
 
 function Header({ children }) {
+  const [results, setResults] = useState([]);
+  const searchRef = useRef();
+
+  const handleChange = () => {
+    const q = searchRef.current.value;
+
+    if (q === "") {
+      setResults([]);
+    } else {
+      fetch(`/api/Search/?q=${q}`)
+        .then((res) => res.json())
+        .then((searchResults) => {
+          setResults(searchResults);
+        });
+    }
+  };
+
   return (
     <>
       <header className={styles.Header}>
@@ -20,7 +38,20 @@ function Header({ children }) {
                 <Link href="/about">About</Link>
               </li>
               <li>
-                <Link href="/search">Search</Link>
+                <input ref={searchRef} type="search" onChange={handleChange} />
+                {results.length ? (
+                  <div className={styles.Search}>
+                    <ul>
+                      {results.map((result) => (
+                        <li key={result.id}>
+                          <Link href={`/comic/${result.id}`}>
+                            <p>{result.title}</p>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
               </li>
             </ul>
           </nav>

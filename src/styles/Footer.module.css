@@ -1,0 +1,14 @@
+.container__Footer {
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  height: 50px;
+  box-shadow: 10px 0 15px #000;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container__Footer > p {
+  font-size: 2.4rem;
+  font-weight: bold;
+}

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "@styles/Home.module.css";
 import fs from "fs/promises";
+import { Layaout } from "@components/Layaout";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ comicsFile }) {
@@ -15,7 +16,7 @@ export default function Home({ comicsFile }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <div className={styles.main}>
         {comicsFile.map((comics) => (
           <Link
             className={styles.container__Comic}
@@ -33,7 +34,7 @@ export default function Home({ comicsFile }) {
             <p>{comics.id}</p>
           </Link>
         ))}
-      </main>
+      </div>
     </>
   );
 }
