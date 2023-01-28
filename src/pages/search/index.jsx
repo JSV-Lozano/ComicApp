@@ -7,8 +7,6 @@ import styles from "@styles/Search.module.css";
 import { search } from "../../../services/search";
 
 function Search({ query, results }) {
-  console.log("🚀 ~ file: index.jsx:10 ~ Search ~ results", results);
-
   return (
     <>
       <Head>
@@ -18,10 +16,11 @@ function Search({ query, results }) {
       </Head>
 
       <div className={styles.container__Search}>
-        <p>Search {query}</p>
+        <p>Search: {query}</p>
         {results.results?.map((result) => {
           return (
             <Link href={result.img} key={result.id}>
+              <h2>{result.title}</h2>
               <Image
                 width={200}
                 height={200}

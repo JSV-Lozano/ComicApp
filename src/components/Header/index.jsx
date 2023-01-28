@@ -7,9 +7,10 @@ function Header({ children }) {
   const [results, setResults] = useState([]);
   const searchRef = useRef();
 
+  const q = searchRef.current?.value;
+
   const handleChange = () => {
     const q = searchRef.current.value;
-
     if (q === "") {
       setResults([]);
     } else {
@@ -42,6 +43,11 @@ function Header({ children }) {
                 {results.length ? (
                   <div className={styles.Search}>
                     <ul>
+                      <li>
+                        <Link href={`/search?q=${q}`}>
+                          Ver Todos los resultados {results.length}
+                        </Link>
+                      </li>
                       {results.map((result) => (
                         <li key={result.id}>
                           <Link href={`/comic/${result.id}`}>
