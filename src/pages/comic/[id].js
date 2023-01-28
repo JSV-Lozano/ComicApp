@@ -48,11 +48,16 @@ export default function ComicId({
   );
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
   const files = await readdir("./comics");
-  const paths = files.map((file) => {
-    const id = basename(file, ".json");
-    return { params: { id } };
+  let paths = [];
+  locales.forEach((locale) => {
+    paths = paths.concat(
+      files.map((file) => {
+        const id = basename(file, ".json");
+        return { params: { id }, locale };
+      })
+    );
   });
 
   return {
@@ -65,7 +70,6 @@ export async function getStaticProps({ params }) {
   const { id } = params;
   const content = await readFile(`./comics/${id}.json`, "utf-8");
   const comic = JSON.parse(content);
-
   const idNumber = +id;
   const nextId = idNumber + 1;
   const prevId = idNumber - 1;

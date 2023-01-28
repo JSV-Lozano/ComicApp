@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useState, useRef } from "react";
 import React, { Children } from "react";
 import styles from "@styles/Header.module.css";
+import { useRouter } from "next/router";
 
 function Header({ children }) {
   const [results, setResults] = useState([]);
@@ -11,6 +12,7 @@ function Header({ children }) {
 
   const handleChange = () => {
     const q = searchRef.current.value;
+    console.log("🚀 ~ file: index.jsx:15 ~ handleChange ~ q", q)
     if (q === "") {
       setResults([]);
     } else {
@@ -21,6 +23,18 @@ function Header({ children }) {
         });
     }
   };
+
+  const { locale, locales } = useRouter();
+
+/*   const showLocales = () => {
+    const restOfLocales = locales.filter((l) => l !== locale);
+    return {
+      actualtLocale: locale,
+      restOfLocales,
+    };
+  }; */
+  
+  const restofLocales = locales.filter((l) => l !== locale);
 
   return (
     <>
@@ -36,7 +50,9 @@ function Header({ children }) {
                 <Link href="/">Home</Link>
               </li>
               <li>
-                <Link href="/about">About</Link>
+                <Link href="/" locale={restofLocales[0]}>
+                  {restofLocales[0]}
+                </Link>
               </li>
               <li>
                 <input ref={searchRef} type="search" onChange={handleChange} />

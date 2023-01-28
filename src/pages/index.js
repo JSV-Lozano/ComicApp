@@ -5,18 +5,22 @@ import { Inter } from "@next/font/google";
 import styles from "@styles/Home.module.css";
 import fs from "fs/promises";
 import { Layaout } from "@components/Layaout";
+import { useI18N } from "context/i18n";
+import { useRouter } from "next/router";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ comicsFile }) {
+  const { locale } = useRouter();
+  const { t } = useI18N();
   return (
     <>
       <Head>
-        <title>AppComics</title>
         <meta name="description" content="Page comics XKCD not not official" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.main}>
+        <h2>{t("LATEST_COMICS")}</h2>
         {comicsFile.map((comics) => (
           <Link
             className={styles.container__Comic}

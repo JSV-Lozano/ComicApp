@@ -5,8 +5,10 @@ import Image from "next/image";
 
 import styles from "@styles/Search.module.css";
 import { search } from "../../../services/search";
+import { useI18N } from "context/i18n";
 
 function Search({ query, results }) {
+  const { t } = useI18N();
   return (
     <>
       <Head>
@@ -14,9 +16,8 @@ function Search({ query, results }) {
         <meta name="description" content="Page comics XKCD not not official" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-
       <div className={styles.container__Search}>
-        <p>Search: {query}</p>
+        <p>{t("SEARCH_RESULTS_TITLE", results.results.length, query)}</p>
         {results.results?.map((result) => {
           return (
             <Link href={result.img} key={result.id}>
